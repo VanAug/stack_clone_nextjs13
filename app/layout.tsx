@@ -18,7 +18,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "StackFlow",
+  title: "passTime",
   description: "A way to pass time.",
   icons: {
     icon: "/assets/images/site-logo.svg",
