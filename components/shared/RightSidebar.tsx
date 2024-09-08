@@ -4,19 +4,19 @@ import React from "react";
 import RenderTag from "./RenderTag";
 
 const hotQuestions = [
-  { _id: 1, title: "How do i pass time " },
-  { _id: 2, title: "How do i pass time " },
-  { _id: 3, title: "How do i pass time " },
-  { _id: 4, title: "How do i pass time " },
-  { _id: 5, title: "How do i pass time " },
+  { _id: "1", title: "How do i pass time " },
+  { _id: "2", title: "How do i pass time " },
+  { _id: "3", title: "How do i pass time " },
+  { _id: "4", title: "How do i pass time " },
+  { _id: "5", title: "How do i pass time " },
 ];
 
 const popularTags = [
-  { _id: 1, name: "JavaScript", totalQuestions: 32 },
-  { _id: 2, name: "React", totalQuestions: 24 },
-  { _id: 3, name: "Next", totalQuestions: 53 },
-  { _id: 4, name: "vue", totalQuestions: 39 },
-  { _id: 5, name: "Redux", totalQuestions: 29 },
+  { _id: "1", name: "JavaScript", totalQuestions: 32 },
+  { _id: "2", name: "React", totalQuestions: 24 },
+  { _id: "3", name: "Next", totalQuestions: 53 },
+  { _id: "4", name: "vue", totalQuestions: 39 },
+  { _id: "5", name: "Redux", totalQuestions: 29 },
 ];
 
 const RightSidebar = () => {
