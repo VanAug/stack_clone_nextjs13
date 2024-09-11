@@ -239,7 +239,7 @@ const Question = ({ mongoUserId }: Props) => {
           {isSubmitting ? (
             <>{type === "edit" ? "Editing..." : "Posting..."}</>
           ) : (
-            <>{type === "edit" ? "Edit Question" : "Ask a Question"}</>
+            <>{type === "edit" ? "Edit Question" : "Ask Question"}</>
           )}
         </Button>
       </form>
