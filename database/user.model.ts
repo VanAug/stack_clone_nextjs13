@@ -24,7 +24,7 @@ const UserSchema = new Schema<IUser>({
   bio: { type: String },
   picture: { type: String, required: true },
   location: { type: String },
-  portfoliowebsite: { type: String, required: true },
+  portfoliowebsite: { type: String },
   reputation: { type: Number, default: 0 },
   saved: [{ type: Schema.Types.ObjectId, ref: "Question" }],
   joinedAt: { type: Date, default: Date.now },
