@@ -23,14 +23,14 @@ export async function viewQuestion(params: ViewQuestionParams) {
 
       if (existingInteraction)
         return console.log("User has already viewed this question.");
-    }
 
-    // Creatre Interaction
-    await Interaction.create({
-      user: userId,
-      action: "view",
-      question: questionId,
-    });
+      // Creatre Interaction
+      await Interaction.create({
+        user: userId,
+        action: "view",
+        question: questionId,
+      });
+    }
   } catch (error) {
     console.log(error);
     throw error;
