@@ -1,15 +1,17 @@
 "use client";
 
 import { Input } from "@/components/ui/input";
+import { formUrlQuery, removeKeysFromQuery } from "@/lib/utils";
 import Image from "next/image";
-import React from "react";
+import { useParams, usePathname, useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
 
 interface CustomInputProps {
   route: string;
   iconPosition: string;
   imgSrc: string;
   placeholder: string;
-  otherClasses: string;
+  otherClasses?: string;
 }
 
 const LocalSearchbar = ({
@@ -19,6 +21,40 @@ const LocalSearchbar = ({
   placeholder,
   otherClasses,
 }: CustomInputProps) => {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useParams();
+
+  const queryParams = new URLSearchParams(searchParams.toString());
+  const query = queryParams.get("q");
+
+  const [search, setSearch] = useState(query || "");
+
+  useEffect(() => {
+    const delayedDebounceFn = setTimeout(() => {
+      if (search) {
+        const newUrl = formUrlQuery({
+          params: searchParams.toString(),
+          key: "q",
+          value: search,
+        });
+
+        router.push(newUrl, { scroll: false });
+      } else {
+        if (pathname === route) {
+          const newUrl = removeKeysFromQuery({
+            params: searchParams.toString(),
+            keysToRemove: ["q"],
+          });
+
+          router.push(newUrl, { scroll: false });
+        }
+      }
+    }, 300);
+
+    return () => clearTimeout(delayedDebounceFn);
+  }, [search, route, pathname, router, searchParams, query]);
+
   return (
     <div
       className={`background-light800_darkgradient relative flex min-h-[56px] grow items-center gap-4 rounded-[10px] px-4 ${otherClasses}`}
@@ -36,8 +72,8 @@ const LocalSearchbar = ({
       <Input
         type="text"
         placeholder={placeholder}
-        value=""
-        onChange={() => {}}
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
         className="paragraph-regular no-focus placeholder background-light800_darkgradient border-none shadow-none outline-none"
       />
     </div>
