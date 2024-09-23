@@ -1,6 +1,6 @@
 "use server";
 
-import Question from "@/database/question.model";
+import Question, { IQuestion } from "@/database/question.model";
 import Tag from "@/database/tag.model";
 import { connectToDatabase } from "../mongoose";
 import User from "@/database/user.model";
@@ -27,7 +27,7 @@ export async function getQuestions(params: GetQuestionsParams) {
     // Calculate the number of posts to skip based on the page number and page size
     const skipAmount = (page - 1) * pageSize;
 
-    const query: FilterQuery<typeof Question> = {};
+    const query: FilterQuery<IQuestion> = {};
 
     if (searchQuery) {
       query.$or = [

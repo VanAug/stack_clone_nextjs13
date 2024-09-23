@@ -1,7 +1,7 @@
 "use server";
 
 import { FilterQuery } from "mongoose";
-import User from "@/database/user.model";
+import User, { IUser } from "@/database/user.model";
 import { connectToDatabase } from "../mongoose";
 import {
   CreateUserParams,
@@ -14,7 +14,7 @@ import {
   UpdateUserParams,
 } from "./shared.types";
 import { revalidatePath } from "next/cache";
-import Question from "@/database/question.model";
+import Question, { IQuestion } from "@/database/question.model";
 import Tag from "@/database/tag.model";
 import Answer from "@/database/answer.model";
 
@@ -105,7 +105,7 @@ export async function getAllUsers(params: GetAllUsersParams) {
 
     const SkipAmount = (page - 1) * pageSize;
 
-    const query: FilterQuery<typeof User> = {};
+    const query: FilterQuery<IUser> = {};
 
     if (searchQuery) {
       query.$or = [
@@ -192,7 +192,7 @@ export async function getSavedQuestions(params: GetSavedQuestionsParams) {
 
     const SkipAmount = (page - 1) * pageSize;
 
-    const query: FilterQuery<typeof Question> = searchQuery
+    const query: FilterQuery<IQuestion> = searchQuery
       ? { title: { $regex: new RegExp(searchQuery, "i") } }
       : {};
 
