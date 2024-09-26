@@ -21,6 +21,7 @@ import Image from "next/image";
 import { createQuestion, editQuestion } from "@/lib/actions/question.action";
 import { useRouter, usePathname } from "next/navigation";
 import { useTheme } from "@/context/ThemeProvider";
+import { toast } from "@/hooks/use-toast";
 
 interface Props {
   mongoUserId: string;
@@ -64,6 +65,11 @@ const Question = ({ mongoUserId, type, questionDetails }: Props) => {
         });
 
         router.push(`/question/${parsedQuestionDetails._id}`);
+        toast({
+          title: "Question Edited",
+          description: "Successfully edited.",
+          variant: "default",
+        });
       } else {
         await createQuestion({
           title: values.title,
@@ -74,6 +80,11 @@ const Question = ({ mongoUserId, type, questionDetails }: Props) => {
         });
         // navigate to home page
         router.push("/");
+        toast({
+          title: "Question Posted",
+          description: "Question successfully asked",
+          variant: "default",
+        });
       }
     } catch (error) {
     } finally {

@@ -1,5 +1,6 @@
 "use client";
 
+import { toast } from "@/hooks/use-toast";
 import { deleteAnswer, deleteQuestion } from "@/lib/actions/question.action";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
@@ -21,9 +22,19 @@ const EditDeleteAction = ({ type, itemId }: Props) => {
     if (type === "Question") {
       // Delete Question
       await deleteQuestion({ questionId: JSON.parse(itemId), path: pathname });
+      toast({
+        title: "Question Deleted",
+        description: "its gone!!! Stupid question anyway!",
+        variant: "default",
+      });
     } else if (type === "Answer") {
       // Delete Answer
       await deleteAnswer({ answerId: JSON.parse(itemId), path: pathname });
+      toast({
+        title: "Answer Deleted",
+        description: "its gone!!! Stupid answer anyway!",
+        variant: "default",
+      });
     }
   };
 
