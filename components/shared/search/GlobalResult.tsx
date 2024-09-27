@@ -30,6 +30,7 @@ const GlobalResult = () => {
         // Search Everything
         const res = await globalSearch({ query: global, type });
 
+        // @ts-ignore
         setResult(JSON.parse(res));
       } catch (error) {
         console.log(error);
