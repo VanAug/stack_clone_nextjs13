@@ -8,6 +8,11 @@ import { getSavedQuestions } from "@/lib/actions/user.action";
 import { SearchParamsProps } from "@/types";
 import { auth } from "@clerk/nextjs/server";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Collection",
+};
 export default async function Home({ searchParams }: SearchParamsProps) {
   const { userId } = auth();
 
